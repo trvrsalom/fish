@@ -71,7 +71,8 @@ var updateSetting = function(setting) {
 	}
 }
 
-var panelShowing = true
+var panelShowing = true;
+
 var togglePanel = function() {
 	if(panelShowing) {
 		$(".optional").hide()
