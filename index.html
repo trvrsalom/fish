@@ -16,8 +16,8 @@
 				position: absolute;
 				top: 10px;
 				left: 10px;
-				background-color: rgba(0,0,0,0.8);
-				color: #fff;
+				background-color: #34495e;
+				color: #ecf0f1;
 				font-family: Helvetica;
 				padding: 10px;
 				border-radius: 5px;
@@ -42,18 +42,24 @@
 			button {
 				background-color: transparent;
 				padding: 5px;
-				color: white;
+				color: #ecf0f1;
 				font-size: 15px;
 				text-align: center;
 				display: inline-block;
 			}
 
 			button:hover {
-				background-color: white;
+				background-color: #ecf0f1;
 				padding: 5px;
-				color: black;
+				color: #34495e;
 				cursor: pointer;
 			}
+
+			.panel {
+				padding: 5px;
+				font-size: 10px;
+			}
+
 			.center {
 				text-align: center;
 			}
@@ -62,15 +68,49 @@
 				cursor: pointer;
 			}
 
+			.details {
+				width: 100%;
+				text-align: center;
+				color: #bdc3c7;
+				font-size: 15px;
+			}
+
+			.details a {
+				text-decoration: underline;
+				color: #3498db;
+			}
+
+			.minimize {
+				text-align: right;
+			}
+
+			hr {
+				border-color: #bdc3c7;
+			}
+
 		</style>
 	</head>
 	<body>
 		<canvas class="ctx" width="100%" height="100%"></canvas>
 		<div class="controls">
-			<hr />
-			<div class="center"><button onclick="restart()">Reload</button></div>
+			<div class="minimize"><button class="panel" onclick="togglePanel()">Hide Controls</button></div>
+				<span class="optional">
+				<hr />
+				<span class="addControls"></span>
+				<hr />
+				<div class="center"><button class="reload" onclick="restart()">Reload</button></div>
+				<hr />
+				<div class="details">
+					Built by: <a href="trevorsalom.com">Trevor Salom</a>
+					<br />
+					Contribute on <a href="https://github.com/trvrsalom/fish">GitHub</a>
+					<br />
+					Based on <a href="http://www.kfish.org/boids/pseudocode.html">Boids</a>
+				</div>
+			</span>
 		</div>
 		<script src="jquery.min.js"></script>
 		<script src="main.js"></script>
+		<script>togglePanel()</script>
 	</body>
 </html>

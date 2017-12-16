@@ -62,10 +62,26 @@ var divide = function(pointA, c) {
 
 var updateSetting = function(setting) {
 	var type = typeof(settings[setting])
-	var input = $("#" + setting).val()
+	var input = $("#" + setting)
 	if(type == "number") {
-		settings[setting] = parseFloat(input)
+		settings[setting] = parseFloat(input.val())
 	}
+	else if(type == "boolean") {
+		settings[setting] = input.prop('checked')
+	}
+}
+
+var panelShowing = true
+var togglePanel = function() {
+	if(panelShowing) {
+		$(".optional").hide()
+		$(".panel").html("Show Controls")
+	}
+	else {
+		$(".panel").html("Hide Controls")
+		$(".optional").show()
+	}
+	panelShowing = !panelShowing
 }
 
 var settingsPaneSetup = function() {
@@ -74,8 +90,10 @@ var settingsPaneSetup = function() {
 		var value = settings[setting]
 		var elm = null
 		if(typeof value == "number") {
-			console.log("yep")
-			elm = $(".controls").prepend("<span class='label'>" + setting + "</span> <input id='" + setting + "'type='text' value='" + value + "' onchange='updateSetting(\"" + setting + "\")'><br />")
+			elm = $(".addControls").prepend("<span class='label'>" + setting + "</span> <input id='" + setting + "'type='text' value='" + value + "' onchange='updateSetting(\"" + setting + "\")'><br />")
+		}
+		else if(typeof value == "boolean"){
+			elm = $(".addControls").prepend("<span class='label'>" + setting + "</span><input id='" + setting + "'type='checkbox' " + (value?"checked":"") + " onchange='updateSetting(\"" + setting + "\")'><br />")
 		}
 	}
 }
